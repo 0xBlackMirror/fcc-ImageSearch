@@ -1,0 +1,18 @@
+{
+  "name": "fcc-imagesearch",
+  "version": "1.0.0",
+  "description": "A FreeCodeCamp BackEnd Project",
+  "main": "app.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "WackThat",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "google-images": "^2.1.0",
+    "mongoose": "^4.13.3",
+    "node-bing-api": "^3.2.2"
+  }
+}
