@@ -3,7 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const GoogleImages = require('google-images');
-const client = new GoogleImages('007733815140463231320:i_fnlkxqon0', 'AIzaSyA7pWcsUjrkQSDHQNukXJH79djUuAGiEHo');
+const client = new GoogleImages('007733815140463231320:i_fnlkxqon0', process.env.API_KEY);
 // "49EB4B94127F7C7836C96DEB3F2CD8A6D12BDB71"
 // Google API Key "AIzaSyA7pWcsUjrkQSDHQNukXJH79djUuAGiEHo"
 // Connection To The Database
