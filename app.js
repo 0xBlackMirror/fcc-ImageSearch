@@ -3,9 +3,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const GoogleImages = require('google-images');
-const client = new GoogleImages('007733815140463231320:i_fnlkxqon0', process.env.API_KEY);
+const client = new GoogleImages('007733815140463231320:i_fnlkxqon0', 'AIzaSyA7pWcsUjrkQSDHQNukXJH79djUuAGiEHo');
 // Connection To The Database
-mongoose.connect('mongodb://localhost/imagesearch' || process.env.DB);
+mongoose.connect('mongodb://adgj:asdfgh@ds119736.mlab.com:19736/imagesearch');
 const db = mongoose.connection;
 // Express Middleware
 const app = express();
