@@ -5,9 +5,9 @@ const path = require('path');
 const mongoose = require('mongoose');
 require('dotenv').config({path: './main.env'});
 const GoogleImages = require('google-images');
-const client = new GoogleImages('007733815140463231320:i_fnlkxqon0', process.env.API_KEY);
+const client = new GoogleImages('007733815140463231320:i_fnlkxqon0', "AIzaSyA7pWcsUjrkQSDHQNukXJH79djUuAGiEHo");
 // Connection To The Database
-mongoose.connect('mongodb://localhost/imagesearch' || process.env.DB);
+mongoose.connect('mongodb://localhost/imagesearch' || "mongodb://wack:50679@ds121336.mlab.com:21336/heroku_288p5s8x");
 const db = mongoose.connection;
 // Express Middleware
 const app = express();
