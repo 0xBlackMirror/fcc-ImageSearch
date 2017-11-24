@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const GoogleImages = require('google-images');
 const client = new GoogleImages('007733815140463231320:i_fnlkxqon0', process.env.API_KEY);
 // Connection To The Database
-mongoose.connect('mongodb://localhost/imagesearch');
+mongoose.connect('mongodb://localhost/imagesearch' || process.env.DB);
 const db = mongoose.connection;
 // Express Middleware
 const app = express();
@@ -13,12 +13,12 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 // Logs Database Schema
-const LogSchmea = mongoose.Schema({
+const LogSchema = mongoose.Schema({
     search: String,
     date: String
 });
 // Compiling The Schema Into A Model
-const Logs = mongoose.model('Logs', LogSchmea);
+const Logs = mongoose.model('Logs', LogSchema);
 // Search Proccess
 app.get('/imagesearch/:searchTerm/:offset?', (req, res, next) => {
     var searchTerm = req.params.searchTerm;
@@ -41,10 +41,14 @@ app.get('/imagesearch/:searchTerm/:offset?', (req, res, next) => {
 // Search History
 app.get('/recent', (req, res) => {
     db.collection('recentSearches').find({}).toArray((err, doc) => {
-        res.json(doc.reverse());
+        let display = [];
+        for(var i=0;i<doc.length;i++){
+            display.push({"term": doc[i].search, "when": doc[i].date});
+        }
+        res.json(display.reverse());
     });
 });
 // Server Start
-app.listen(3000, () => {
+app.listen(process.env.PORT || 3000, () => {
     console.log('Server is on.');
 });
