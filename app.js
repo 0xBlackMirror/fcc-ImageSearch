@@ -1,17 +1,20 @@
 // Node Basic Requires
 const express = require('express');
 const bodyParser = require('body-parser');
+const path = require('path');
 const mongoose = require('mongoose');
 const GoogleImages = require('google-images');
-const client = new GoogleImages('007733815140463231320:i_fnlkxqon0', 'AIzaSyA7pWcsUjrkQSDHQNukXJH79djUuAGiEHo');
+const client = new GoogleImages('007733815140463231320:i_fnlkxqon0', process.env.API_KEY);
 // Connection To The Database
-mongoose.connect('mongodb://adgj:asdfgh@ds119736.mlab.com:19736/imagesearch');
+mongoose.connect('mongodb://localhost/imagesearch' || process.env.DB);
 const db = mongoose.connection;
 // Express Middleware
 const app = express();
 // BodyParser Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+// Setting Public Folder
+app.use("/public", express.static(path.join(__dirname, 'public')));
 // Logs Database Schema
 const LogSchema = mongoose.Schema({
     search: String,
@@ -19,6 +22,10 @@ const LogSchema = mongoose.Schema({
 });
 // Compiling The Schema Into A Model
 const Logs = mongoose.model('Logs', LogSchema);
+// Home Page
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, './public', 'index.html'));
+});
 // Search Proccess
 app.get('/imagesearch/:searchTerm/:offset?', (req, res, next) => {
     var searchTerm = req.params.searchTerm;
