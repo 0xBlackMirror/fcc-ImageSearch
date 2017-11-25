@@ -7,7 +7,7 @@ require('dotenv').config({path: './main.env'});
 const GoogleImages = require('google-images');
 const client = new GoogleImages('007733815140463231320:i_fnlkxqon0', process.env.GOOGLE_API);
 // Connection To The Database
-mongoose.connect('mongodb://localhost/imagesearch' || process.env.MONGODB_URI);
+mongoose.connect(process.env.MONGODB_URI);
 const db = mongoose.connection;
 // Express Middleware
 const app = express();
