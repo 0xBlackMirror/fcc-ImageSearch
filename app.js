@@ -3,7 +3,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const mongoose = require('mongoose');
-require('dotenv').config({path: './main.env'});
 const GoogleImages = require('google-images');
 const client = new GoogleImages('007733815140463231320:i_fnlkxqon0', process.env.GOOGLE_API);
 // Connection To The Database
